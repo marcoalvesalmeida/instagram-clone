@@ -18,10 +18,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000' , credentials :  true}));
 
 app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads', 'resized')));
 
 app.use(require('./routes.js'));
 
-app.listen('3333');
+server.listen('3333');
