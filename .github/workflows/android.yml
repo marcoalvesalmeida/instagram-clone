@@ -16,7 +16,7 @@ jobs:
           npm install
       - name: Build Android Release
         run: |
-          cd instarocket && cd android && ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_PASSWORD='senhamudar' -PMYAPP_UPLOAD_KEY_PASSWORD='senhamudar'
+          cd instarocket && cd android && bash ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_PASSWORD='senhamudar' -PMYAPP_UPLOAD_KEY_PASSWORD='senhamudar'
       - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
