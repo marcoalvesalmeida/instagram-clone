@@ -18,4 +18,4 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Gradle
-      run: ./instarocket/android/gradlew build
+      run: sudo ./instarocket/android/gradlew build
