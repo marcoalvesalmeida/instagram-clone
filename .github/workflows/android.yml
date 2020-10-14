@@ -7,20 +7,19 @@ on:
     branches: [ master ]
 
 jobs:
-  apk:
-    name: Generate APK
-    runs-on: ubuntu-18.04
-
-    steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      - name: Build debug APK
-        run: bash ./instarocket/android/gradlew assembleRelease --stacktrace
-      - name: Upload APK
+  build-android:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: |
+          npm install
+      - name: Build Android Release
+        run: |
+          cd instarocket && cd android && ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_PASSWORD='senhamudar' -PMYAPP_UPLOAD_KEY_PASSWORD='senhamudar'
+      - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: app
-          path: instarocket/android/app/build/outputs/apk/debug/app-debug.apk
+          name: app-release.apk
+          path: instarocket/android/app/build/outputs/apk/release/
+
